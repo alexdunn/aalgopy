@@ -1,0 +1,23 @@
+language: python
+python:
+    - "3.4"
+
+notifications:
+  email: false
+
+branches:
+    only:
+        - master
+
+install: # Prepare system
+    - pip install -U pip
+    - pip install pytest
+    - pip install pytest-cov
+    - pip install coveralls # Coveralls Code Coverage
+
+script: # Test
+    - py.test --cov ./ --cov-report term --cov-report xml
+
+after_success:
+    - coveralls
+
