@@ -11,10 +11,9 @@ config = {
     'download_url': 'Where to download it.',
     'author_email': 'dunn.alex@icloud.com',
     'version': '0',
-    'install_requires': ['pytest'],
+    'install_requires': ['pytest', 'pytest-cov', 'coveralls'],
     'packages': ['aalgo'],
     'scripts': [],
-    'cmdclass': {'test': PyTest},
     'name': 'aalgo'
 }
 

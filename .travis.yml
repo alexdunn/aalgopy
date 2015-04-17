@@ -11,9 +11,7 @@ branches:
 
 install: # Prepare system
     - pip install -U pip
-    - pip install pytest
-    - pip install pytest-cov
-    - pip install coveralls # Coveralls Code Coverage
+    - pip install -e .
 
 script: # Test
     - py.test --cov ./ --cov-report term --cov-report xml

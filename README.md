@@ -1,9 +1,12 @@
 [![Build Status](https://travis-ci.org/alexdunn/aalgopy.svg?branch=master)](https://travis-ci.org/alexdunn/aalgopy)
+[![Coverage Status](https://coveralls.io/repos/alexdunn/aalgopy/badge.svg)](https://coveralls.io/r/alexdunn/aalgopy)
 
 ## About
-This is a collection of algorithms written in Python 3.  Many of the algorithms are from the textbook *The Algorithm Design Manual*.
+This is a collection of algorithms written in Python 3.4.  Many of the algorithms are from the textbook *The Algorithm Design Manual*.
 
 ## Test
+- `pip install -e .`
+- `py.test`
 
 ## Tools
 
