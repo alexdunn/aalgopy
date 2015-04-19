@@ -59,19 +59,15 @@ def LottoTicketSet(numbers, l, k, j):
             # The chosen tickets in tickets_subset do not cover all l-subsets, but do they cover enough such that if any ticket won, it would contain at least one of these l-subsets?
             # TODO: I shouldn't have to iterate over all tickets here.  What is a better algorithm for answering the question: Does there exist any ticket that does not share an l-subset wtih my tickets?
             satisfies = False
-            print("testing tickets_subset {}" .format(tickets_subset))
             for ticket in all_subsets_gen(numbers, k):  # This is the same as `for tickets in all_tickets` but I'm choosing to use the generator so that when I refactor this so that I no longer have to store a list of all the tickets, this generator can remain since it uses constant memory.
                 for l_subset in all_subsets_gen(ticket, l):
                     if bitArray[math.rank_combination(l_subset, numbers)]:
-                        print("satisfied ticket {}" .format(ticket))
                         satisfies = True
                         break
                     else:
-                        print("failed ticket {}" .format(ticket))
                         satisfies = False
                 if not satisfies:  # A ticket that does not share an l-subset with this tickets_subset was found, so this is not a winning tickets_subset
                     bitArray.setall(False)
                     break
             if satisfies:
-                print("WIN with ticket subset {}" .format(tickets_subset))
                 return tickets_subset
