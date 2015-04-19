@@ -1,3 +1,5 @@
+max-line-length: 9999
+
 pep8:
   disable:
     - E501
