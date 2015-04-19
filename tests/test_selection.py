@@ -20,9 +20,14 @@ def test_for_all_subsets():
         assert correct_subsets[i] == subset
         i += 1
 
-    # TODO: Figure out how to unit test an exception on a generator with pytest
-    #pytest.raises(ValueError, list(selection.all_subsets_gen([1, 2, 3], 6)))
 
+def test_all_subsets_gen_exception1():
+    with pytest.raises(ValueError):
+        list(selection.all_subsets_gen([1, 2, 3], 6))
+
+def test_all_subsets_gen_exception2():
+    with pytest.raises(ValueError):
+        list(selection.all_subsets_gen([1, 2, 3], 0))
 
 def test_lottoTicketSelection():
     """Test the selection of how many tickets need to be bought to guarantee 1 winning ticket when a psychic has narrowed down to a smaller set which numbers will definitely appear on the fully correct jackpot ticket."""

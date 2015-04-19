@@ -26,7 +26,7 @@ def all_subsets_gen(myset, n):
 
 
 def LottoTicketSet(numbers, l, k, j):
-    """Heuristically determine the lottery tickets to buy such that at least one has a winning number on it.  numbers is a list of the lottery numbers (The potentially winning lottery numbers), k is the number of slots on each ticket, j is how many of the n numbers are guaranteed to be on the winning ticket, and l is the number of matching numbers necessary to win a prize.  Assume that the n potentially winning lottery numbers are consecutive integers 1...n."""
+    """Heuristically determine the lottery tickets to buy such that at least one has a winning number on it.  numbers is a list of the lottery numbers (The potentially winning lottery numbers), k is the number of slots on each ticket, j is how many of the n numbers are guaranteed to be on the winning ticket, and l is the number of matching numbers necessary to win a prize.  Assume that the n potentially winning lottery numbers are consecutive integers 1...n.  This is from Chapter 1 of The Algorithm Design Manual."""
     # When writing numbers on a ticket, you only need to have l numbers chosen correctly to win a prise.  Not all of them need to be right.
     # Each valid number for the lottery 1...n may be chosen only once on a given ticket.  Order of choice does not matter.
     # We want to select the number of tickets necessary to guarantee one win with l numbers.
@@ -37,9 +37,6 @@ def LottoTicketSet(numbers, l, k, j):
 
     if j > k:
         raise ValueError("j must be less than or equal to k.  It's not possible for the psychic to be sure that more numbers than the size of the ticket will appear on the ticket.")
-
-    if l > k:
-        raise ValueError("l, the number of slots that must be correct to get any prize, could not possibly be larger than k, the number of slots on a lottery ticket.")
 
     # Initialize the n choose l sized bit vector V to all false
     size = math.number_combinations(len(numbers), l)
