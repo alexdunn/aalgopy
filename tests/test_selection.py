@@ -22,12 +22,16 @@ def test_for_all_subsets():
 
 
 def test_all_subsets_gen_exception1():
+    """Test the generator's first assertion."""
     with pytest.raises(ValueError):
         list(selection.all_subsets_gen([1, 2, 3], 6))
 
+
 def test_all_subsets_gen_exception2():
+    """Test the second assertion."""
     with pytest.raises(ValueError):
         list(selection.all_subsets_gen([1, 2, 3], 0))
+
 
 def test_lottoTicketSelection():
     """Test the selection of how many tickets need to be bought to guarantee 1 winning ticket when a psychic has narrowed down to a smaller set which numbers will definitely appear on the fully correct jackpot ticket."""
@@ -39,3 +43,9 @@ def test_lottoTicketSelection():
     assert selection.LottoTicketSet([1, 2, 4, 5], 1, 2, 2) == [[1, 4], [1, 2]]
     assert selection.LottoTicketSet([1, 2, 4], 1, 2, 2) == [[1, 2]]
     assert selection.LottoTicketSet([1, 2, 4, 5], 2, 3, 3) == [[1, 2, 4]]
+
+
+def test_equalize_money():
+    """Test the minimum amount of money that must exchange hands."""
+    assert selection.equalize_money([10.00, 20.00, 30.00]) == 10.00
+    assert selection.equalize_money([15.00, 15.01, 3.00, 3.01]) == 11.99

@@ -3,6 +3,8 @@
 from bitarray import bitarray
 from aalgo import math
 from aalgo import data_structures
+from decimal import Decimal, ROUND_HALF_UP
+from math import *
 
 
 def all_subsets_gen(myset, n):
@@ -71,3 +73,23 @@ def LottoTicketSet(numbers, l, k, j):
                     break
             if satisfies:
                 return tickets_subset
+
+
+def equalize_money(money_spent):
+    """Return the minimum amount of money that must change hands so that everyone spent the same amount of money, within one cent.  The given list money_spent is a list of how much money each person spent.
+
+    From http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=13&page=show_problem&problem=1078.  UVa Online Judge Problem 10137.
+    """
+    exchange = 0
+    total = 0
+    for money in money_spent:
+        total += money
+
+    # TODO: This is a hack.  How do I actually deal with decimal rounding properly?
+    average = round(round(total/len(money_spent), 3), 2)
+
+    for money in money_spent:
+        if money > average:
+            exchange += money - average
+
+    return exchange
