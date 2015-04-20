@@ -3,31 +3,29 @@
 from bitarray import bitarray
 from aalgo import math
 from aalgo import data_structures
-from decimal import Decimal, ROUND_HALF_UP
-from math import *
 
 
-def all_subsets_gen(myset, n):
+def all_subsets_gen(myset, size):
     """A generator for all possible subsets size n of the set myset.  This is run in constant memory."""
-    if n > len(myset):
+    if size > len(myset):
         raise ValueError("There does not exist a subset of myset that is larger than myset.")
 
-    if n <= 0:
+    if size <= 0:
         raise ValueError("There is only one set of size 0, the empty set.  There are no sets of size less than 0.")
 
-    for i in data_structures.bit_permutation_gen(n, len(myset)):
+    for i in data_structures.bit_permutation_gen(size, len(myset)):
         # TODO: First converting to a string will be unecessary when the bitarray library supports shift operators
         binary_str = data_structures.binary_representation(i, len(myset))
         subset = []
         i = 0
-        for c in binary_str:
-            if c is '1':
+        for bit in binary_str:
+            if bit is '1':
                 subset.append(myset[i])
             i += 1
         yield subset
 
 
-def LottoTicketSet(numbers, l, k, j):
+def lotto_ticket_set(numbers, l, k, j):
     """Heuristically determine the lottery tickets to buy such that at least one has a winning number on it.  numbers is a list of the lottery numbers (The potentially winning lottery numbers), k is the number of slots on each ticket, j is how many of the n numbers are guaranteed to be on the winning ticket, and l is the number of matching numbers necessary to win a prize.  Assume that the n potentially winning lottery numbers are consecutive integers 1...n.  This is from Chapter 1 of The Algorithm Design Manual."""
     # When writing numbers on a ticket, you only need to have l numbers chosen correctly to win a prise.  Not all of them need to be right.
     # Each valid number for the lottery 1...n may be chosen only once on a given ticket.  Order of choice does not matter.
@@ -42,8 +40,8 @@ def LottoTicketSet(numbers, l, k, j):
 
     # Initialize the n choose l sized bit vector V to all false
     size = math.number_combinations(len(numbers), l)
-    bitArray = bitarray(size)
-    bitArray.setall(False)
+    bit_array = bitarray(size)
+    bit_array.setall(False)
 
     all_tickets = list(all_subsets_gen(numbers, k))
 
@@ -55,21 +53,21 @@ def LottoTicketSet(numbers, l, k, j):
     for i in range(size):
         for tickets_subset in all_subsets_gen(all_tickets, i + 1):
             for ticket in tickets_subset:
-                # Set the bitArray to True at each position that represents an l-subset of the currently chosen ticket T
+                # Set the bit_array to True at each position that represents an l-subset of the currently chosen ticket T
                 for potentially_winning_set in all_subsets_gen(ticket, l):
-                    bitArray[math.rank_combination(potentially_winning_set, numbers)] = True
+                    bit_array[math.rank_combination(potentially_winning_set, numbers)] = True
             # The chosen tickets in tickets_subset do not cover all l-subsets, but do they cover enough such that if any ticket won, it would contain at least one of these l-subsets?
             # TODO: I shouldn't have to iterate over all tickets here.  What is a better algorithm for answering the question: Does there exist any ticket that does not share an l-subset wtih my tickets?
             satisfies = False
             for ticket in all_subsets_gen(numbers, k):  # This is the same as `for tickets in all_tickets` but I'm choosing to use the generator so that when I refactor this so that I no longer have to store a list of all the tickets, this generator can remain since it uses constant memory.
                 for l_subset in all_subsets_gen(ticket, l):
-                    if bitArray[math.rank_combination(l_subset, numbers)]:
+                    if bit_array[math.rank_combination(l_subset, numbers)]:
                         satisfies = True
                         break
                     else:
                         satisfies = False
                 if not satisfies:  # A ticket that does not share an l-subset with this tickets_subset was found, so this is not a winning tickets_subset
-                    bitArray.setall(False)
+                    bit_array.setall(False)
                     break
             if satisfies:
                 return tickets_subset
@@ -86,7 +84,7 @@ def equalize_money(money_spent):
         total += money
 
     # TODO: This is a hack.  How do I actually deal with decimal rounding properly?
-    average = round(round(total/len(money_spent), 3), 2)
+    average = round(round(total / len(money_spent), 3), 2)
 
     for money in money_spent:
         if money > average:

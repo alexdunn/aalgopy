@@ -33,16 +33,16 @@ def test_all_subsets_gen_exception2():
         list(selection.all_subsets_gen([1, 2, 3], 0))
 
 
-def test_lottoTicketSelection():
+def test_lotto_ticket_set():
     """Test the selection of how many tickets need to be bought to guarantee 1 winning ticket when a psychic has narrowed down to a smaller set which numbers will definitely appear on the fully correct jackpot ticket."""
-    assert selection.LottoTicketSet([1, 2, 3, 4, 5], 2, 3, 3) == [[1, 3, 4], [1, 2, 5]]
-    assert selection.LottoTicketSet([1, 2, 3, 4, 5], 3, 3, 3) == [[3, 4, 5], [2, 4, 5], [2, 3, 5], [2, 3, 4], [1, 4, 5], [1, 3, 5], [1, 3, 4], [1, 2, 5], [1, 2, 4], [1, 2, 3]]
-    pytest.raises(ValueError, selection.LottoTicketSet, [1, 2, 3, 4, 5], 4, 3, 3)
-    pytest.raises(ValueError, selection.LottoTicketSet, [1, 2, 3, 4, 5], 3, 3, 4)
-    pytest.raises(ValueError, selection.LottoTicketSet, [1, 2, 3, 4, 5], 3, 3, 2)
-    assert selection.LottoTicketSet([1, 2, 4, 5], 1, 2, 2) == [[1, 4], [1, 2]]
-    assert selection.LottoTicketSet([1, 2, 4], 1, 2, 2) == [[1, 2]]
-    assert selection.LottoTicketSet([1, 2, 4, 5], 2, 3, 3) == [[1, 2, 4]]
+    assert selection.lotto_ticket_set([1, 2, 3, 4, 5], 2, 3, 3) == [[1, 3, 4], [1, 2, 5]]
+    assert selection.lotto_ticket_set([1, 2, 3, 4, 5], 3, 3, 3) == [[3, 4, 5], [2, 4, 5], [2, 3, 5], [2, 3, 4], [1, 4, 5], [1, 3, 5], [1, 3, 4], [1, 2, 5], [1, 2, 4], [1, 2, 3]]
+    pytest.raises(ValueError, selection.lotto_ticket_set, [1, 2, 3, 4, 5], 4, 3, 3)
+    pytest.raises(ValueError, selection.lotto_ticket_set, [1, 2, 3, 4, 5], 3, 3, 4)
+    pytest.raises(ValueError, selection.lotto_ticket_set, [1, 2, 3, 4, 5], 3, 3, 2)
+    assert selection.lotto_ticket_set([1, 2, 4, 5], 1, 2, 2) == [[1, 4], [1, 2]]
+    assert selection.lotto_ticket_set([1, 2, 4], 1, 2, 2) == [[1, 2]]
+    assert selection.lotto_ticket_set([1, 2, 4, 5], 2, 3, 3) == [[1, 2, 4]]
 
 
 def test_equalize_money():
