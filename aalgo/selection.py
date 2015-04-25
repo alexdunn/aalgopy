@@ -14,7 +14,7 @@ def all_subsets_gen(myset, size):
         raise ValueError("There is only one set of size 0, the empty set.  There are no sets of size less than 0.")
 
     for i in data_structures.bit_permutation_gen(size, len(myset)):
-        # TODO: First converting to a string will be unecessary when the bitarray library supports shift operators
+        # TODO: Converting to a string here will be unecessary when the bitarray library supports shift operators
         binary_str = data_structures.binary_representation(i, len(myset))
         subset = []
         i = 0
