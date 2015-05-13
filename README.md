@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/xanderdunn/aalgopy.svg?branch=master)](https://travis-ci.org/xanderdunn/aalgopy)
-[![Coverage Status](https://coveralls.io/repos/alexdunn/aalgopy/badge.svg)](https://coveralls.io/r/alexdunn/aalgopy)
-[![Code Climate](https://codeclimate.com/github/alexdunn/aalgopy/badges/gpa.svg)](https://codeclimate.com/github/alexdunn/aalgopy)
+[![Coverage Status](https://coveralls.io/repos/xanderdunn/aalgopy/badge.svg)](https://coveralls.io/r/xanderdunn/aalgopy)
+[![Code Climate](https://codeclimate.com/github/xanderdunn/aalgopy/badges/gpa.svg)](https://codeclimate.com/github/xanderdunn/aalgopy)
 [![Code Health](https://landscape.io/github/xanderdunn/aalgopy/master/landscape.svg?style=flat)](https://landscape.io/github/xanderdunn/aalgopy/master)
-[![Codacy Badge](https://www.codacy.com/project/badge/c8b2d51aa0934addb24e6a55ea55f95f)](https://www.codacy.com/app/worthless-trash-junk/aalgopy)
+[![Codacy Badge](https://www.codacy.com/project/badge/c8b2d51aa0934addb24e6a55ea55f95f)](https://www.codacy.com/app/xanderdunn/aalgopy)
 
 ## About
 This is a collection of algorithms written in Python 3.4.  Many of the algorithms are from the textbook *The Algorithm Design Manual*.
