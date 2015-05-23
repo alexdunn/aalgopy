@@ -1,7 +1,7 @@
 """The selection module deals with making subset selections from a given set."""
 
 from bitarray import bitarray
-from aalgo import math
+from aalgo.math import number_combinations, rank_combination
 from aalgo import data_structures
 
 
@@ -39,7 +39,7 @@ def lotto_ticket_set(numbers, l, k, j):
         raise ValueError("j must be less than or equal to k.  It's not possible for the psychic to be sure that more numbers than the size of the ticket will appear on the ticket.")
 
     # Initialize the n choose l sized bit vector V to all false
-    size = math.number_combinations(len(numbers), l)
+    size = number_combinations(len(numbers), l)
     bit_array = bitarray(size)
     bit_array.setall(False)
 
@@ -55,13 +55,13 @@ def lotto_ticket_set(numbers, l, k, j):
             for ticket in tickets_subset:
                 # Set the bit_array to True at each position that represents an l-subset of the currently chosen ticket T
                 for potentially_winning_set in all_subsets_gen(ticket, l):
-                    bit_array[math.rank_combination(potentially_winning_set, numbers)] = True
+                    bit_array[rank_combination(potentially_winning_set, numbers)] = True
             # The chosen tickets in tickets_subset do not cover all l-subsets, but do they cover enough such that if any ticket won, it would contain at least one of these l-subsets?
             # TODO: I shouldn't have to iterate over all tickets here.  What is a better algorithm for answering the question: Does there exist any ticket that does not share an l-subset wtih my tickets?
             satisfies = False
             for ticket in all_subsets_gen(numbers, k):  # This is the same as `for tickets in all_tickets` but I'm choosing to use the generator so that when I refactor this so that I no longer have to store a list of all the tickets, this generator can remain since it uses constant memory.
                 for l_subset in all_subsets_gen(ticket, l):
-                    if bit_array[math.rank_combination(l_subset, numbers)]:
+                    if bit_array[rank_combination(l_subset, numbers)]:
                         satisfies = True
                         break
                     else:
