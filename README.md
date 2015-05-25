@@ -5,10 +5,11 @@
 [![Codacy Badge](https://www.codacy.com/project/badge/c8b2d51aa0934addb24e6a55ea55f95f)](https://www.codacy.com/app/xanderdunn/aalgopy)
 
 ## About
-This is a collection of algorithms written in Python 3.4.  Many of the algorithms are from the textbook *The Algorithm Design Manual*.
+This is a collection of algorithms written in Python 3.4.  Many of the algorithms are from the textbook *The Algorithm Design Manual* and custom implementations of algorithms discussed in Udacticity Course 120: Introduction to Machine Learning.
 
 ## Test
 - `pip install -e .`
+- `./get_data_sets.sh`
 - `py.test`
 
 ## Tools

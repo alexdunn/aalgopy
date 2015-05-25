@@ -8,12 +8,12 @@ except ImportError:
 
 config = {
     'description': 'Algorithms Written in Python',
-    'author': 'Alex Dunn',
-    'url': 'https://github.com/alexdunn/aalgopy',
-    'download_url': 'Where to download it.',
-    'author_email': 'dunn.alex@icloud.com',
+    'author': 'Xander Dunn',
+    'url': 'https://github.com/xanderdunn/aalgopy',
+    'download_url': 'https://github.com/xanderdunn/aalgopy',
+    'author_email': 'xander.dunn@icloud.com',
     'version': '0',
-    'install_requires': ['pytest', 'pytest-cov', 'coveralls', 'bitarray'],
+    'install_requires': ['pytest', 'pytest-cov', 'coveralls', 'bitarray', 'numpy', 'nltk', 'sklearn'],
     'packages': ['aalgo'],
     'scripts': [],
     'name': 'aalgo'

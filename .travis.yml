@@ -12,6 +12,7 @@ branches:
 install: # Prepare system
     - pip install -U pip
     - pip install -e .
+    - ./get_data_sets.sh
 
 script: # Test
     - py.test --cov ./ --cov-report term --cov-report xml
