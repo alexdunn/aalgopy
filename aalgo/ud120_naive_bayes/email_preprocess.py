@@ -7,7 +7,6 @@ import numpy
 from sklearn import cross_validation
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectPercentile, f_classif
-from fractions import Fraction
 
 
 def preprocess(words_file="../tools/word_data.pkl", authors_file="../tools/email_authors.pkl"):
@@ -51,10 +50,5 @@ def preprocess(words_file="../tools/word_data.pkl", authors_file="../tools/email
     # info on the data
     print("no. of Chris training emails:", sum(labels_train))
     print("no. of Sara training emails:", len(labels_train) - sum(labels_train))
-
-    #for value in features_train_transformed[0]:
-        #frac = Fraction(float(value))
-        #if frac > 0:
-            #print(frac)
 
     return numpy.array(features_train_transformed), numpy.array(features_test_transformed), numpy.array(labels_train), numpy.array(labels_test)
