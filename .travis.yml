@@ -11,6 +11,7 @@ branches:
 
 install: # Prepare system
     - pip install -U pip
+    - sudo apt-get build-dep python-scipy
     - pip install -e .
     - ./get_data_sets.sh
 
