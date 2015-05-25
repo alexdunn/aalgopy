@@ -12,7 +12,7 @@ import numpy
 import sys
 
 
-class SolutionClass:
+class SolutionClass(object):
 
     """A SolutionClass is one of the categories that a classifier can solve to."""
 
