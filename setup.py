@@ -13,7 +13,7 @@ config = {
     'download_url': 'https://github.com/xanderdunn/aalgopy',
     'author_email': 'xander.dunn@icloud.com',
     'version': '0',
-    'install_requires': ['pytest', 'pytest-cov', 'coveralls', 'bitarray', 'numpy', 'nltk', 'sklearn'],
+    'install_requires': ['pytest', 'pytest-cov', 'coveralls', 'bitarray', 'numpy', 'nltk', 'scikit-learn'],
     'packages': ['aalgo'],
     'scripts': [],
     'name': 'aalgo'
