@@ -21,7 +21,7 @@ before_install:
 
 install: # Prepare system
     - sudo apt-get build-dep python-scipy
-    - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy scipy nltk scikit-learn pytest bitarray pytest-cov
+    - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy scipy nltk scikit-learn pytest bitarray
     - pip install -U pip
     - pip install -e .
     - ./get_data_sets.sh
