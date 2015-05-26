@@ -4,7 +4,6 @@ from aalgo.ud120_naive_bayes.nb_author_id import SolutionClass, classify
 from aalgo.ud120_naive_bayes.email_preprocess import preprocess
 import os
 import numpy
-from tests.test_helpers import number_close_to
 
 
 def test_parts():
@@ -24,12 +23,6 @@ def test_parts():
     assert solution_class2.mle(0) == (0.5 + 1) / (2 + 3)
     assert solution_class2.mle(1) == (0.7 + 1) / (2 + 3)
     assert solution_class2.mle(2) == (0.0 + 1) / (2 + 3)
-    #number_close_to(solution_class1.variance(0), 0.4802, 0.0001)
-    #number_close_to(solution_class1.variance(1), 1.1235, 0.0001)
-    #number_close_to(solution_class1.variance(2), 4.5, 0.0001)
-    #number_close_to(solution_class2.variance(0), 0.125, 0.0001)
-    #number_close_to(solution_class2.variance(1), 0.245, 0.0001)
-    #number_close_to(solution_class2.variance(2), 0.0, 0.0001)
     assert solution_class1 == classify([solution_class1, solution_class2], [1.0, 1.5, 3.0])
     assert solution_class2 == classify([solution_class1, solution_class2], [0.5, 0.7, 0.0])
     assert solution_class2 == classify([solution_class1, solution_class2], [0.02, 0.7, 0.0])

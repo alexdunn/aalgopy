@@ -69,12 +69,8 @@ class SolutionClass(object):
         """Predict the probability that this feature belongs to this class."""
         mle = self.mle(feature_index)
         var = self.variance(feature_index)
-        if not mle > 0 or not var > 0:   # This means that this feature never appears in any of this class' training features
-            result = 0.0
-        else:
-            # Equation from http://scikit-learn.org/stable/modules/naive_bayes.html
-            result = (-(feature_value - mle) ** 2 / (2 * var)) - numpy.log(numpy.sqrt(2 * numpy.pi * var))
-        return result
+        # Equation from http://scikit-learn.org/stable/modules/naive_bayes.html
+        return (-(feature_value - mle) ** 2 / (2 * var)) - numpy.log(numpy.sqrt(2 * numpy.pi * var))
 
 
 def classify(solution_classes, features):
