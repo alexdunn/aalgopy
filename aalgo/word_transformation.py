@@ -57,7 +57,7 @@ def transform_word(start_word, stop_word):
         current_word = item[0]
         who_added_me = item[1]
         iterate_level(current_word, same_length_words, word_connections)
-        if len(word_connections[current_word][0]) > 0:
+        if len(word_connections[current_word][0]) > 0:  # Update the path traveled to get here
             if who_added_me:
                 word_connections[current_word] = (word_connections[current_word][0], word_connections[who_added_me][1] + [who_added_me])
         for new_connection in word_connections[current_word][0]:
