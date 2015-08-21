@@ -5,6 +5,7 @@
 from nltk import download           # Download dictionary of English words
 from nltk.corpus import words       # Dictionary of English words
 from string import ascii_lowercase  # Iterate through the alphabet
+from collections import OrderedDict
 
 word_connections = {} # A dictionary where keys map to tuples ([connections], [path back to the root node])
 
@@ -52,11 +53,11 @@ def transform_word(start_word, stop_word):
             same_length_words += [word.lower()]
     print(same_length_words)
 
-    same_length_words = set(same_length_words)  # No duplicates
-
-    start_words = {start_word : None}
+    start_words = OrderedDict({start_word : None})
     while(len(start_words) > 0):
-        item = start_words.popitem()
+        print(start_words)
+        item = start_words.popitem(last=False)
+        print(item)
         current_word = item[0]
         who_added_me = item[1]
         print(current_word)
