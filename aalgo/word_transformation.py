@@ -7,18 +7,15 @@ from nltk.corpus import words       # Dictionary of English words
 from string import ascii_lowercase  # Iterate through the alphabet
 from collections import OrderedDict
 
-word_connections = {} # A dictionary where keys map to tuples ([connections], [path back to the root node])
-
-def iterate_level(start_word, same_length_words):
+def iterate_level(start_word, same_length_words, graph):
     """Iterate one depth into the graph of generated word connections.  The start_words are the words whose connetions should be filled out.  A connection will be made with all words that are in the given same_length_words that are only one character different.  Returns a list of the words whose connections were added on this iteration."""
-    global word_connections
     added_connections = []
-    if start_word not in word_connections:
-        word_connections[start_word] = ([], [])
+    if start_word not in graph:
+        graph[start_word] = ([], [])
         added_connections += [start_word]
         for same_length_word in same_length_words:
-            if one_character_different(start_word, same_length_word) and same_length_word not in word_connections:    # I don't want a cyclic graph
-                word_connections[start_word] = (word_connections[start_word][0] + [same_length_word], word_connections[start_word][1])
+            if one_character_different(start_word, same_length_word):
+                graph[start_word] = (graph[start_word][0] + [same_length_word], graph[start_word][1])
     return added_connections
 
 def one_character_different(word1, word2):
@@ -38,7 +35,7 @@ def one_character_different(word1, word2):
 
 def transform_word(start_word, stop_word):
     """Given a starting word, transform it one letter at a time into the stop word where each intermediary transformation is also an English word."""
-    global word_connections
+    word_connections = {} # A dictionary where keys map to tuples ([connections], [path back to the root node])
     download('words')               # Download the English dictionary
     if len(start_word) != len(stop_word):
         raise ValueError("This algorithm is only suitable for transforming words of the same length.")
@@ -50,13 +47,13 @@ def transform_word(start_word, stop_word):
     for word in words.words():
         if len(word) == len(start_word):
             same_length_words += [word.lower()]
-
+    
     start_words = OrderedDict({start_word : None})
     while(len(start_words) > 0):
         item = start_words.popitem(last=False)
         current_word = item[0]
         who_added_me = item[1]
-        iterate_level(current_word, same_length_words)
+        iterate_level(current_word, same_length_words, word_connections)
         if len(word_connections[current_word][0]) > 0:
             if who_added_me:
                 word_connections[current_word] = (word_connections[current_word][0], word_connections[who_added_me][1] + [who_added_me])
