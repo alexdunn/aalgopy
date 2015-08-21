@@ -14,7 +14,6 @@ def iterate_level(start_word, same_length_words):
     global word_connections
     added_connections = []
     if start_word not in word_connections:
-        print("start_word = {}".format(start_word))
         word_connections[start_word] = ([], [])
         added_connections += [start_word]
         for same_length_word in same_length_words:
@@ -51,16 +50,12 @@ def transform_word(start_word, stop_word):
     for word in words.words():
         if len(word) == len(start_word):
             same_length_words += [word.lower()]
-    print(same_length_words)
 
     start_words = OrderedDict({start_word : None})
     while(len(start_words) > 0):
-        print(start_words)
         item = start_words.popitem(last=False)
-        print(item)
         current_word = item[0]
         who_added_me = item[1]
-        print(current_word)
         iterate_level(current_word, same_length_words)
         if len(word_connections[current_word][0]) > 0:
             if who_added_me:
@@ -71,8 +66,6 @@ def transform_word(start_word, stop_word):
                 return
             if new_connection not in word_connections and new_connection not in start_words:
                 start_words[new_connection] = current_word
-                print(start_words)
         start_words.pop(current_word, None)
-        print("There are {} words of the same length and {} nodes in the graph.".format(len(same_length_words), len(word_connections)))
 
     print("There is no possible connection between {} and {}".format(start_word, stop_word))
