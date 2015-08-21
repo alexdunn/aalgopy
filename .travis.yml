@@ -15,12 +15,8 @@ before_install:
   - ./miniconda.sh -b
   - export PATH=/home/travis/miniconda/bin:$PATH
   - conda update --yes conda
-  # Fix a crash with multiprocessing on Travis and are not specific to using Miniconda
-  - sudo rm -rf /dev/shm
-  - sudo ln -s /run/shm /dev/shm
 
 install: # Prepare system
-    - sudo apt-get build-dep python-scipy
     - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy scipy nltk scikit-learn pytest bitarray
     - pip install -U pip
     - pip install -e .
