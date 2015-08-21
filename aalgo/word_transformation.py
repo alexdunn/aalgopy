@@ -5,7 +5,7 @@
 from nltk import download           # Download dictionary of English words
 from nltk.corpus import words       # Dictionary of English words
 from string import ascii_lowercase  # Iterate through the alphabet
-from collections import OrderedDict
+from collections import OrderedDict # Make the outcome deterministic by using an ordered dictionary
 
 def iterate_level(start_word, same_length_words, graph):
     """Iterate one depth into the graph of generated word connections.  The start_words are the words whose connetions should be filled out.  A connection will be made with all words that are in the given same_length_words that are only one character different.  Returns a list of the words whose connections were added on this iteration."""
@@ -41,6 +41,8 @@ def transform_word(start_word, stop_word):
         raise ValueError("This algorithm is only suitable for transforming words of the same length.")
     if start_word.lower() != start_word or stop_word.lower() != stop_word:
         raise ValueError("This algorithm only deals with lower case words.")
+    if start_word not in words.words() or stop_word not in words.words():
+        raise ValueError("It's expected that the beginning and ending words are English words.")
 
     # Create dictionary of all words that are the same length as the given word
     same_length_words = []
@@ -48,9 +50,10 @@ def transform_word(start_word, stop_word):
         if len(word) == len(start_word):
             same_length_words += [word.lower()]
     
-    start_words = OrderedDict({start_word : None})
+    start_words = OrderedDict({start_word : None})  # An ordered dictionary where the value is the word to be iterated on and the value is the path taken to get here in the graph
+
     while(len(start_words) > 0):
-        item = start_words.popitem(last=False)
+        item = start_words.popitem(last=False)  # Take the first item added to this dictionary to maintain breadth first search
         current_word = item[0]
         who_added_me = item[1]
         iterate_level(current_word, same_length_words, word_connections)
@@ -60,9 +63,10 @@ def transform_word(start_word, stop_word):
         for new_connection in word_connections[current_word][0]:
             if new_connection == stop_word:
                 print("It's possible to make the transformation with {}".format(word_connections[current_word][1] + [current_word] + [stop_word]))
-                return
+                return word_connections[current_word][1] + [current_word] + [stop_word]
             if new_connection not in word_connections and new_connection not in start_words:
                 start_words[new_connection] = current_word
         start_words.pop(current_word, None)
 
     print("There is no possible connection between {} and {}".format(start_word, stop_word))
+
