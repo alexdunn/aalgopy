@@ -7,7 +7,8 @@
 This is a collection of algorithms written in Python 3.4.  Many of the algorithms are from the textbook *The Algorithm Design Manual* and custom implementations of algorithms discussed in Udacticity Course 120: Introduction to Machine Learning.
 
 ## Test
-- `pip install -e .`
+On Mac, with Python 3.4 installed via HomeBrew: `brew install python3`:
+- `pip3 install -e .`
 - `./get_data_sets.sh`
 - `py.test`
 
