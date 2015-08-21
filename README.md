@@ -11,6 +11,7 @@ On Mac, with Python 3.4 installed via HomeBrew: `brew install python3`:
 - `pip3 install -e .`
 - `./get_data_sets.sh`
 - `py.test`
+To see terminal output from tests, run `py.test -s`.  To run a specific test, specify its file: `py.test tests/test_fizzbuzz.py`.
 
 ## Tools
 
